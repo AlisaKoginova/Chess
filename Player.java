@@ -2,26 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    public boolean white; // переменная, определяющая цвет игрока: 1 - белый, 0 - черный
+    public boolean white; // РїРµСЂРµРјРµРЅРЅР°СЏ, РѕРїСЂРµРґРµР»СЏСЋС‰Р°СЏ С†РІРµС‚ РёРіСЂРѕРєР°: 1 - Р±РµР»С‹Р№, 0 - С‡РµСЂРЅС‹Р№
 
-    private List<Piece> pieces = new ArrayList<>(); // создаем коллекцию фигур
+    private List<Piece> pieces = new ArrayList<>(); // СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ С„РёРіСѓСЂ
 
-    public Player(boolean white) { // устанавливаем цвет игрока
+    public Player(boolean white) { // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С†РІРµС‚ РёРіСЂРѕРєР°
         this.white = white;
     }
 
-    public List<Piece> getPieces() { // функция для возврата фигур коллекции 
+    public List<Piece> getPieces() { // С„СѓРЅРєС†РёСЏ РґР»СЏ РІРѕР·РІСЂР°С‚Р° С„РёРіСѓСЂ РєРѕР»Р»РµРєС†РёРё 
         return pieces;
     }
     
-    // функция инициализации фигур
+    // С„СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё С„РёРіСѓСЂ
     public void initPieces(){ 
-        if(this.white == true) // если игрок белого цвета
+        if(this.white == true) // РµСЃР»Рё РёРіСЂРѕРє Р±РµР»РѕРіРѕ С†РІРµС‚Р°
         {
-            for(int i=0; i<8; i++) // добавляем ряд пешек
+            for(int i=0; i<8; i++) // РґРѕР±Р°РІР»СЏРµРј СЂСЏРґ РїРµС€РµРє
                 pieces.add(new Pawn(true,i,2)); 
             
-            // добавляем по очереди остальные фигуры
+            // РґРѕР±Р°РІР»СЏРµРј РїРѕ РѕС‡РµСЂРµРґРё РѕСЃС‚Р°Р»СЊРЅС‹Рµ С„РёРіСѓСЂС‹
             pieces.add(new Rook(true, 0, 0));
             pieces.add(new Rook(true, 7, 0));
             pieces.add(new Bishop(true, 2, 0));
@@ -31,12 +31,12 @@ public class Player {
             pieces.add(new Queen(true, 3, 0));
             pieces.add(new King(true, 4, 0));
         }
-        else // если игрок белого цвета (ставим фигуры в противоположной стороне доски) 
+        else // РµСЃР»Рё РёРіСЂРѕРє Р±РµР»РѕРіРѕ С†РІРµС‚Р° (СЃС‚Р°РІРёРј С„РёРіСѓСЂС‹ РІ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ СЃС‚РѕСЂРѕРЅРµ РґРѕСЃРєРё) 
         {
-            for(int i=0; i<8; i++) // добавляем ряд пешек
+            for(int i=0; i<8; i++) // РґРѕР±Р°РІР»СЏРµРј СЂСЏРґ РїРµС€РµРє
                 pieces.add(new Pawn(true,i,6));
             
-            // добавляем по очереди остальные фигуры
+            // РґРѕР±Р°РІР»СЏРµРј РїРѕ РѕС‡РµСЂРµРґРё РѕСЃС‚Р°Р»СЊРЅС‹Рµ С„РёРіСѓСЂС‹
             pieces.add(new Rook(true, 0, 7));
             pieces.add(new Knight(true, 1, 7));
             pieces.add(new Bishop(true, 2, 7));
