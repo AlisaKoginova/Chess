@@ -1,10 +1,10 @@
 
 public class Game {
-	private Player white; // ыапролд
+    private Player white; // объявляем двух игроков 
     private Player black;
-    private Board board = new Board(); // îáúÿâëÿåì äîñêó
+    private Board board = new Board(); // объявляем доску
      
-    // èíèöèàëèçèðóåì îáúåêòû êëàññà Game 
+    // инициализируем объекты класса Game 
     public void setBoard(Board board) { 
         this.board = board;
     }
@@ -16,7 +16,7 @@ public class Game {
         this.black = player;
     }
     
-    // â ñëåäóþùèõ ôóíêöèÿõ "ñâÿçûâàåì" öâåò ñ èãðîêàìè 
+    // в следующих функциях "связываем" цвет с игроками 
     public Player getWhite() {
         return white;
     }
@@ -32,12 +32,12 @@ public class Game {
         this.black = black;
     }
     
-    // ôóíêöèÿ äëÿ èíèöèàëèçàöèè èãðîêîâ ñ ðàçíûõ ñòîðîí äîñêè è äîáàâëåíèÿ ôèãóð íà äîñêó - íà÷àëî èãðû
+    // функция для инициализации игроков с разных сторон доски и добавления фигур на доску - начало игры
     public boolean initBoardPlayers() {
-        if(this.black == null || this.white == null) // åñëè èãðîê èëè èãðîêè íå èíèöèàëèçèðîâàíû, âîçâðàùàåì false 
+        if(this.black == null || this.white == null) // если игрок или игроки не инициализированы, возвращаем false
             return false;
-        this.board = new Board(); // èíèöèàëèçèðóåì äîñêó 
-        for(int i=0; i<black.getPieces().size(); i++){ // ïðèñâàèâàåì èãðîêàì ôèãóðû 
+        this.board = new Board(); // инициализируем доску 
+        for(int i=0; i<black.getPieces().size(); i++){ // присваиваем игрокам фигуры 
             board.getSquare(black.getPieces().get(i).getX(), black.getPieces().get(i).getY()).occupySquare(black.getPieces().get(i));
         }
         return true;
