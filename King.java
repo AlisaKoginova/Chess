@@ -1,6 +1,6 @@
 public class King extends Piece{
 
-    public King(boolean available, int x, int y) {
+    public King(boolean accessible, int x, int y) {
         super(accessible, x, y);
     }
 
