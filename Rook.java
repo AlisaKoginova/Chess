@@ -1,7 +1,7 @@
 public class Rook extends Piece{
 
     public Rook(boolean accessible, int x, int y) {
-        super(available, x, y);
+        super(accessible, x, y);
     }
 
 
