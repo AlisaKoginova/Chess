@@ -1,17 +1,31 @@
-public class King extends Piece{
 
-    public King(boolean accessible, int x, int y) {
-        super(accessible, x, y);
-    }
-
-    @Override
-    public boolean isValid(Board board, int fromX, int fromY, int toX, int toY) {
-        if(super.isValid(board, fromX, fromY, toX, toY) == false)
-            return false;
-        if(Math.sqrt(Math.pow(Math.abs((toX - fromX)),2)) + Math.pow(Math.abs((toY - fromY)), 2) != Math.sqrt(2)){
-            return false;
+public class King extends Game{
+	
+	public static String posible(int i) {
+        String list="", oldPiece;
+        int r=i/8, c=i%8;
+        for (int j=0;j<9;j++) {
+            if (j!=4) {
+                try {
+                    if (Character.isLowerCase(chessBoard[r-1+j/3][c-1+j%3].charAt(0)) || " ".equals(chessBoard[r-1+j/3][c-1+j%3])) {
+                        oldPiece=chessBoard[r-1+j/3][c-1+j%3];
+                        chessBoard[r][c]=" ";
+                        chessBoard[r-1+j/3][c-1+j%3]="A";
+                        int kingTemp=kingPositionC;
+                        kingPositionC=i+(j/3)*8+j%3-9;
+                        if (kingSafe()) {
+                            list=list+r+c+(r-1+j/3)+(c-1+j%3)+oldPiece;
+                        }
+                        chessBoard[r][c]="A";
+                        chessBoard[r-1+j/3][c-1+j%3]=oldPiece;
+                        kingPositionC=kingTemp;
+                    }
+                } catch (Exception e) {}
+            }
         }
-        return false;
+        
+        // ДОБАВИТЬ АНИМАЦИЮ ПРИ ШАХ И МАТЕ
+        return list;
     }
-
 }
+
