@@ -1,30 +1,35 @@
 
-public class King extends Game{
-	
-	public static String posible(int i) {
+public class Knight extends Game {
+
+    public static String posible(int i) {
         String list="", oldPiece;
         int r=i/8, c=i%8;
-        for (int j=0;j<9;j++) {
-            if (j!=4) {
+        for (int j=-1; j<=1; j+=2) {
+            for (int k=-1; k<=1; k+=2) {
                 try {
-                    if (Character.isLowerCase(chessBoard[r-1+j/3][c-1+j%3].charAt(0)) || " ".equals(chessBoard[r-1+j/3][c-1+j%3])) {
-                        oldPiece=chessBoard[r-1+j/3][c-1+j%3];
+                    if (Character.isLowerCase(chessBoard[r+j][c+k*2].charAt(0)) || " ".equals(chessBoard[r+j][c+k*2])) {
+                        oldPiece=chessBoard[r+j][c+k*2];
                         chessBoard[r][c]=" ";
-                        chessBoard[r-1+j/3][c-1+j%3]="A";
-                        int kingTemp=kingPositionC;
-                        kingPositionC=i+(j/3)*8+j%3-9;
                         if (kingSafe()) {
-                            list=list+r+c+(r-1+j/3)+(c-1+j%3)+oldPiece;
+                            list=list+r+c+(r+j)+(c+k*2)+oldPiece;
                         }
-                        chessBoard[r][c]="A";
-                        chessBoard[r-1+j/3][c-1+j%3]=oldPiece;
-                        kingPositionC=kingTemp;
+                        chessBoard[r][c]="K";
+                        chessBoard[r+j][c+k*2]=oldPiece;
+                    }
+                } catch (Exception e) {}
+                try {
+                    if (Character.isLowerCase(chessBoard[r+j*2][c+k].charAt(0)) || " ".equals(chessBoard[r+j*2][c+k])) {
+                        oldPiece=chessBoard[r+j*2][c+k];
+                        chessBoard[r][c]=" ";
+                        if (kingSafe()) {
+                            list=list+r+c+(r+j*2)+(c+k)+oldPiece;
+                        }
+                        chessBoard[r][c]="K";
+                        chessBoard[r+j*2][c+k]=oldPiece;
                     }
                 } catch (Exception e) {}
             }
         }
-        
-        // ДОБАВИТЬ АНИМАЦИЮ ПРИ ШАХ И МАТЕ
         return list;
     }
 }
